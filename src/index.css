@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Core Obsidian Palette */
+  --bg-obsidian: #050508;
+  --bg-slate: #0b0b0f;
+  --bg-slate-hover: #111118;
+  --bg-slate-rgb: 11, 11, 15;
+  
+  /* Strategic & Agentic Accent Colors */
+  --seoul-gold: hsl(45, 90%, 58%);
+  --seoul-gold-rgb: 247, 185, 49;
+  --emerald: hsl(150, 75%, 48%);
+  --emerald-rgb: 31, 214, 122;
+  
+  /* Text colors */
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --text-muted: #475569;
+  
+  /* Borders and elements */
+  --border-glass: rgba(255, 255, 255, 0.05);
+  --border-glass-hover: rgba(255, 255, 255, 0.12);
+  --glow-gold: rgba(247, 185, 49, 0.08);
+  --glow-emerald: rgba(31, 214, 122, 0.08);
+  
+  /* Typography */
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', "SF Mono", Menlo, Consolas, Monaco, monospace;
+}
+
+/* Global Reset & Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  cursor: default;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-obsidian);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+  background: radial-gradient(circle at 80% 0%, var(--glow-emerald) 0%, transparent 60%),
+              radial-gradient(circle at 20% 90%, var(--glow-gold) 0%, transparent 60%),
+              var(--bg-obsidian);
+  background-attachment: fixed;
+}
+
+/* Custom Selection */
+::selection {
+  background: rgba(31, 214, 122, 0.2);
+  color: var(--text-primary);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-obsidian);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-slate-hover);
+  border-radius: 4px;
+  border: 2px solid var(--bg-obsidian);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--seoul-gold);
+}
+
+/* Interactive elements cursor defaults */
+a, button, input, select, textarea, [role="button"] {
+  cursor: pointer;
+}
+
+/* Typography Base */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Core Layout Structures */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+/* Glassmorphism Panel styles */
+.glass-panel {
+  background: rgba(var(--bg-slate-rgb), 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+
+.glass-panel:hover {
+  border-color: var(--border-glass-hover);
+}
+
+/* Dynamic Animation utilities */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary {
+  background: var(--text-primary);
+  color: var(--bg-obsidian);
+  border: 1px solid var(--text-primary);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: rgba(var(--bg-slate-rgb), 0.5);
+  color: var(--text-primary);
+  border: 1px solid var(--border-glass);
+}
+
+.btn-secondary:hover {
+  border-color: var(--seoul-gold);
+  color: var(--seoul-gold);
+  transform: translateY(-2px);
+}
+
+/* Section common headers */
+.section-meta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--emerald);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-meta::before {
+  content: '//';
+  opacity: 0.5;
+}
+
+.section-title {
+  font-size: clamp(32px, 5vw, 48px);
+  color: var(--text-primary);
+  margin-bottom: 48px;
+  line-height: 1.1;
+}
+
+.section-title span {
+  color: var(--seoul-gold);
+}
