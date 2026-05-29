@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Bot, ExternalLink, Code, Terminal, Sparkles, Database } from 'lucide-react';
+import { useState } from 'react';
+import { ChevronDown, ChevronUp, ExternalLink, Terminal } from 'lucide-react';
 
 export default function Projects() {
   const [expandedProject, setExpandedProject] = useState(null);
@@ -198,7 +198,7 @@ LIMIT 1;`}</pre>
         <h2 className="section-title fade-in visible">Active <span>System Modules</span></h2>
 
         <div className="projects-grid">
-          {projectsData.map((project, idx) => {
+          {projectsData.map((project) => {
             const isExpanded = expandedProject === project.id;
             return (
               <div 

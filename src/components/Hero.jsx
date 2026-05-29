@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Play, Sparkles, Terminal as TerminalIcon, Check, ArrowRight } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Play, Sparkles, Terminal as TerminalIcon, ArrowRight } from 'lucide-react';
 
 export default function Hero() {
   const [terminalHistory, setTerminalHistory] = useState([

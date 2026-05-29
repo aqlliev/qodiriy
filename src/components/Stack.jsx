@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function Stack() {
   const languages = [
     { label: 'Python', icon: '🐍', desc: 'Agent loops & ml' },
