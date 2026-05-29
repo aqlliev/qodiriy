@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BookOpen, Briefcase, Award, Bot, GraduationCap, Calendar, Milestone } from 'lucide-react';
+import { useState } from 'react';
+import { BookOpen, Briefcase, Bot, GraduationCap, Calendar } from 'lucide-react';
 
 export default function Journey() {
   const [activeItem, setActiveItem] = useState(null);

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BarChart3, Bot, Compass, Brain, Code, Network } from 'lucide-react';
+import { useState } from 'react';
+import { BarChart3, Bot, Compass } from 'lucide-react';
 
 export default function Mindset() {
   const [activeCore, setActiveCore] = useState('both'); // 'business', 'tech', or 'both'

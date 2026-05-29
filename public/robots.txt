@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://qodiriy.vercel.app/sitemap.xml
