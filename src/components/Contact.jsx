@@ -99,7 +99,7 @@ export default function Contact() {
 
             <div className="security-guarantee">
               <ShieldCheck size={16} className="security-icon" />
-              <span>TLS 1.3 encrypted direct transfer pipeline.</span>
+              <span>Prefer a direct line? Reach me on the channels above.</span>
             </div>
           </div>
 
@@ -121,37 +121,43 @@ export default function Contact() {
               {status !== 'success' ? (
                 <form onSubmit={handleSubmit} className="terminal-form">
                   <div className="form-row">
-                    <span className="form-prompt">$ sender_name:</span>
-                    <input 
-                      type="text" 
+                    <label htmlFor="sender_name" className="form-prompt">$ sender_name:</label>
+                    <input
+                      id="sender_name"
+                      name="name"
+                      type="text"
                       value={formData.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
-                      placeholder="Qodiriy Aqlliev..." 
+                      placeholder="Qodiriy Aqlliev..."
                       className="form-input"
-                      required 
+                      required
                       disabled={status === 'sending'}
                     />
                   </div>
 
                   <div className="form-row">
-                    <span className="form-prompt">$ sender_email:</span>
-                    <input 
-                      type="email" 
+                    <label htmlFor="sender_email" className="form-prompt">$ sender_email:</label>
+                    <input
+                      id="sender_email"
+                      name="email"
+                      type="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
-                      placeholder="visitor@sejong.edu..." 
+                      placeholder="visitor@sejong.edu..."
                       className="form-input"
-                      required 
+                      required
                       disabled={status === 'sending'}
                     />
                   </div>
 
                   <div className="form-row textarea-row">
-                    <span className="form-prompt">$ payload_body:</span>
-                    <textarea 
+                    <label htmlFor="payload_body" className="form-prompt">$ payload_body:</label>
+                    <textarea
+                      id="payload_body"
+                      name="message"
                       value={formData.message}
                       onChange={(e) => handleInputChange('message', e.target.value)}
-                      placeholder="Type your strategic mission scope..." 
+                      placeholder="Type your strategic mission scope..."
                       className="form-input form-textarea"
                       required
                       disabled={status === 'sending'}

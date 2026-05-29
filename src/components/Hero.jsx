@@ -171,7 +171,7 @@ export default function Hero() {
                 type="text" 
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyPress}
                 placeholder="Type /help or select a chip below..."
                 className="terminal-text-input"
               />

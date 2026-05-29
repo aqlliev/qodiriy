@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Mindset from './components/Mindset';
@@ -8,35 +7,6 @@ import Journey from './components/Journey';
 import Contact from './components/Contact';
 
 function App() {
-  useEffect(() => {
-    // Set up the intersection observer for smooth scroll entrances
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1
-    };
-
-    const handleIntersection = (entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          // Once visible, we can unobserve if we only want animate-once behavior
-          observer.unobserve(entry.target);
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(handleIntersection, observerOptions);
-
-    // Query all elements with the fade-in class
-    const targets = document.querySelectorAll('.fade-in');
-    targets.forEach(target => observer.observe(target));
-
-    return () => {
-      targets.forEach(target => observer.unobserve(target));
-    };
-  }, []);
-
   return (
     <div className="app-workspace">
       {/* Sleek fixed header */}
@@ -71,7 +41,7 @@ function App() {
         <div className="container footer-grid">
           <span className="copyright">© 2026 Qodiriy Aqlliev. All rights reserved.</span>
           <span className="footer-status-tag">
-            <span className="status-dot"></span> System Protocol: SECURE
+            <span className="status-dot"></span> Status: Available for Work
           </span>
         </div>
       </footer>
