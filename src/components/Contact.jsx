@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { Mail, Send, Terminal, ShieldCheck, Cpu } from 'lucide-react';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '', company: '' });
   const [status, setStatus] = useState('idle'); // idle, typing, sending, success
   const [logs, setLogs] = useState([
-    'Handshake protocol waiting for trigger...',
-    'Channel: SECURE SSL TUNNEL initialized.'
+    'Contact console ready — awaiting input.',
   ]);
 
   const handleInputChange = (field, val) => {
@@ -21,30 +20,35 @@ export default function Contact() {
     setLogs(prev => [...prev, msg]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
-      addLog('ERROR: Empty payload fields detected. Submission aborted.');
+      addLog('ERROR: Name, email, and message are all required.');
       return;
     }
 
     setStatus('sending');
-    addLog('PACKAGING: Compiling form metadata into payload.json...');
-    addLog(`SENDER: ${formData.email}`);
-    
-    setTimeout(() => {
-      addLog('ROUTING: Mapping direct tunnel to aqlliev@outlook.com...');
-    }, 400);
+    addLog('Sending your message...');
 
-    setTimeout(() => {
-      addLog('TRANSMITTING: Sending 128-bit encrypted packet stream...');
-    }, 900);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json().catch(() => ({}));
 
-    setTimeout(() => {
-      addLog('DELIVERED: Packet successfully acknowledged by server! ✅');
+      if (!res.ok) {
+        throw new Error(data.error || 'Something went wrong.');
+      }
+
+      addLog("Message delivered — I'll get back to you soon. ✅");
       setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-    }, 1500);
+      setFormData({ name: '', email: '', message: '', company: '' });
+    } catch (err) {
+      addLog(`ERROR: ${err.message} You can also email aqlliev@outlook.com directly.`);
+      setStatus('idle');
+    }
   };
 
   return (
@@ -164,8 +168,20 @@ export default function Contact() {
                     />
                   </div>
 
-                  <button 
-                    type="submit" 
+                  {/* Honeypot: hidden from humans; bots that fill it are silently dropped server-side. */}
+                  <input
+                    type="text"
+                    name="company"
+                    value={formData.company}
+                    onChange={(e) => handleInputChange('company', e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
+                  />
+
+                  <button
+                    type="submit"
                     className="btn btn-primary form-submit-btn"
                     disabled={status === 'sending'}
                   >
