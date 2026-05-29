@@ -68,7 +68,7 @@ export default function Journey() {
   ];
 
   return (
-    <section className="journey-section" id="journey">
+    <section className="journey-section" id="experience">
       <div className="container">
         <div className="section-meta fade-in visible">04 — Journey</div>
         <h2 className="section-title fade-in visible">Academic & <span>System Milestones</span></h2>
